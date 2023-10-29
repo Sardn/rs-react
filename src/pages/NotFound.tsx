@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { Component } from 'react';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class NotFound extends Component {
   render() {
     return (

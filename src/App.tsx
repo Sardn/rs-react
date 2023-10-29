@@ -1,3 +1,4 @@
+/* eslint-disable react/prefer-stateless-function */
 import { Route, Routes } from 'react-router-dom';
 import { Component } from 'react';
 import Home from './pages/Home';
