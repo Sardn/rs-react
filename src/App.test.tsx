@@ -1,4 +1,4 @@
-// import { describe, expect, it } from 'vitest';
+// import { describe, it } from 'vitest';
 // import { render, screen } from '@testing-library/react';
 // import { MemoryRouter } from 'react-router-dom';
 
@@ -14,7 +14,7 @@
 //       screen.getByRole('heading', {
 //         level: 1,
 //       })
-//     ).toHaveTextContent('Hello World');
+//     ).toContain('Hello World');
 //   });
 //   it('Renders not found if invalid path', () => {
 //     render(
@@ -26,6 +26,6 @@
 //       screen.getByRole('heading', {
 //         level: 1,
 //       })
-//     ).toHaveTextContent('Not Found');
+//     ).toContain('Not Found');
 //   });
 // });
