@@ -1,5 +1,5 @@
 import React from 'react';
-import { Character } from '../../types/api';
+import { Character } from '../types/api';
 import styles from './Card.module.css';
 
 type CharacterListProps = {
