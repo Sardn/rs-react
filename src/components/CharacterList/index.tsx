@@ -1,8 +1,8 @@
 import React from 'react';
 import CharacterCard from '../Card';
-import { Character, CharacterResponse } from '../../types/api';
-import { api } from '../../api';
-import { keyPrevQuery } from '../../types/Const';
+import { Character, CharacterResponse } from '../types/api';
+import { api } from '../api';
+import { keyPrevQuery } from '../types/Const';
 import styles from './characterList.module.css';
 
 type CharacterListProps = {

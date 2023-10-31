@@ -1,5 +1,5 @@
 import React from 'react';
-import { keyPrevQuery } from '../../types/Const';
+import { keyPrevQuery } from '../types/Const';
 import styles from './ControlMenu.module.css';
 
 type SearchBarProps = {
