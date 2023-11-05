@@ -5,66 +5,33 @@ import './App.css';
 import Pagination from './components/Pagination';
 import { Route, Routes } from 'react-router-dom';
 
-export default class App extends React.Component<object, AppState> {
-  state: AppState = {
-    query: null,
-  };
-
-  onChangeQuery(q: string) {
-    this.setState({ query: q });
-  }
-
-  render() {
-    return (
-      <Routes>
-        <Route>
+export default function App(): JSX.Element {
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
           <>
             <header>
               <h1>Rick & Morty</h1>
-              <ControlMenu
-                onChange={(query) => this.onChangeQuery(query)}
-              ></ControlMenu>
+              <ControlMenu />
             </header>
             <main className="main">
-              <CharacterList name={this.state.query} />
-              <Pagination />
+              <CharacterList />
+              <Pagination
+                currentPage={0}
+                allPage={null}
+                nextPage={function (): void {
+                  throw new Error('Function not implemented.');
+                }}
+                prevPage={function (): void {
+                  throw new Error('Function not implemented.');
+                }}
+              />
             </main>
           </>
-        </Route>
-      </Routes>
-    );
-  }
+        }
+      ></Route>
+    </Routes>
+  );
 }
-
-// type AppState = {
-//   query: string | null;
-// };
-
-// const App = () => {
-//   state: AppState = {
-//     query: null,
-//   };
-
-//   onChangeQuery(q: string) {
-//     this.setState({ query: q });
-//   }
-//   return (
-//     <>
-//       <header>
-//         <h1>Rick & Morty</h1>
-//         <ControlMenu
-//           onChange={(query) => this.onChangeQuery(query)}
-//         ></ControlMenu>
-//       </header>
-//       <main className="main">
-//         <CharacterList name={this.state.query} />
-//       </main>
-//     </>
-//   );
-// };
-
-// export default App;
-
-// function onChangeQuery(q: any, string: any) {
-//   throw new Error('Function not implemented.');
-// }
