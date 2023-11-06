@@ -1,54 +1,36 @@
-import React from 'react';
-import { keyPrevQuery } from '../types/Const';
+import React, { useState } from 'react';
+import { keyPrevQuery } from '../../Types/constants';
+import { useNavigate } from 'react-router-dom';
 import styles from './ControlMenu.module.css';
 
-type SearchBarProps = {
-  onChange: (query: string) => void;
-};
+export default function SearchBar(): JSX.Element {
+  const navigate = useNavigate();
+  const [query, setQuery] = useState<string>(
+    localStorage.getItem(keyPrevQuery) ?? ''
+  );
 
-type SearchBarState = {
-  query: string;
-  error: Error | null;
-};
-
-export default class SearchBar extends React.Component<
-  SearchBarProps,
-  SearchBarState
-> {
-  state: SearchBarState = {
-    query: localStorage.getItem(keyPrevQuery) || '',
-    error: null,
-  };
-
-  onChange(event: React.ChangeEvent<HTMLInputElement>) {
+  function onChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
     const value = event.target.value;
-    this.setState({ query: value });
+    setQuery(value);
   }
 
-  onSearchClick() {
-    const query = this.state.query.trim();
-    localStorage.setItem(keyPrevQuery, query);
-    this.props.onChange(query);
+  function onSearchClick() {
+    const q = query.trim();
+    localStorage.setItem(keyPrevQuery, q);
+    navigate(`/?query=${q}`);
   }
-
-  render() {
-    if (this.state.error) throw this.state.error;
-    return (
-      <div>
-        <input
-          className={styles.search}
-          value={this.state.query}
-          onChange={(event) => this.onChange(event)}
-          type="search"
-          placeholder="Search..."
-        ></input>
-        <button type="button" onClick={() => this.onSearchClick()}>
-          Search
-        </button>
-        <button onClick={() => this.setState({ error: new Error() })}>
-          Throw an error
-        </button>
-      </div>
-    );
-  }
+  return (
+    <div className={styles.control}>
+      <input
+        className={styles.search}
+        value={query}
+        onChange={(event) => onChangeInput(event)}
+        type="search"
+        placeholder="Search..."
+      ></input>
+      <button type="button" onClick={() => onSearchClick()}>
+        Search
+      </button>
+    </div>
+  );
 }

@@ -1,0 +1,15 @@
+.app {
+  display: flex;
+}
+
+.main-page {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.img {
+  margin: auto;
+  padding: 2rem 0 0;
+  width: 90vw;
+  height: 25rem;
+}

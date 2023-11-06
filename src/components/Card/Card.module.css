@@ -1,11 +1,14 @@
 .card {
-  width: 30rem;
-  padding: 2rem 1rem;
+  display: flex;
+  flex-direction: column;
+  width: 150px;
+  padding: 5px;
   border-radius: 1rem;
   background-color: rgba(231, 197, 197, 0.322);
   box-shadow: 0 0 0.5rem 0.5rem rgba(231, 71, 71, 0.288);
   transition: all 0.5s;
 }
+
 .card:hover {
   cursor: pointer;
   transition: all 0.5s;
@@ -14,4 +17,9 @@
 .card img {
   margin: 1.5rem 0;
   border-radius: 0.5rem;
+  transition: all 0.5s;
+}
+.card img:hover {
+  border-radius: 50%;
+  transition: all 0.5s;
 }

@@ -8,7 +8,7 @@ interface State {
   hasError: boolean;
 }
 
-class ErrorBoundary extends Component<Props, State> {
+class ErrorPage extends Component<Props, State> {
   public state: State = {
     hasError: false,
   };
@@ -24,9 +24,9 @@ class ErrorBoundary extends Component<Props, State> {
   public render() {
     if (this.state.hasError) {
       return (
-        <h1 className=''>
-          Something went wrong. Please, reload the page.
-        </h1>
+        <div>
+          <h1> Something went wrong. Please, reload the page.</h1>
+        </div>
       );
     }
 
@@ -34,4 +34,4 @@ class ErrorBoundary extends Component<Props, State> {
   }
 }
 
-export default ErrorBoundary;
+export default ErrorPage;
