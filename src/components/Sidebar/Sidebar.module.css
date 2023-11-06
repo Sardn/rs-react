@@ -1,0 +1,10 @@
+.page {
+  margin: 20px auto;
+  width: 350px;
+  background-color: green
+}
+.close {
+    margin: 2rem;
+    border-radius: 50%;
+    background-color: rgb(240, 207, 207);
+  }
