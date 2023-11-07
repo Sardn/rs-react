@@ -1,3 +1,7 @@
+.list {
+  display: flex;
+  flex-direction: column;
+}
 .cards {
   display: flex;
   justify-content: space-around;
@@ -6,7 +10,4 @@
   flex-wrap: wrap;
   padding-bottom: 4rem;
 }
-.list {
-  display: flex;
-  flex-direction: column;
-}
+

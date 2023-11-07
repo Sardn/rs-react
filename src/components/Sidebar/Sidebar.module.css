@@ -1,10 +1,19 @@
 .page {
-  margin: 20px auto;
-  width: 350px;
-  background-color: green
+  margin: 2rem auto;
+  width: 50rem;
+  height: 50rem;
+  background-color: green;
+  border-radius: 1rem;
+}
+.wrapClose{
+  display: flex;
 }
 .close {
-    margin: 2rem;
-    border-radius: 50%;
-    background-color: rgb(240, 207, 207);
-  }
+  margin: 2rem;
+  border-radius: 50%;
+  background-color: rgb(240, 207, 207);
+}
+.page img {
+  margin: 1rem;
+  border-radius: 1rem;
+}

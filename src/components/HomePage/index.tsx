@@ -14,8 +14,8 @@ export default function Layout(): JSX.Element {
   }
 
   return (
-    <div className="app">
-      <div className="main-page" onClick={onClick}>
+    <div className={styles.app}>
+      <div className={styles.page} onClick={onClick}>
         <header>
           <div>
             <img
@@ -26,7 +26,7 @@ export default function Layout(): JSX.Element {
           </div>
           <ControlMenu />
         </header>
-        <main className="main">
+        <main className={styles.main}>
           <Cards />
         </main>
       </div>

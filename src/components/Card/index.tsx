@@ -31,7 +31,7 @@ export default function CharacterCard({
       }}
     >
       <img src={character.image} />
-      <h4 className="character-card__title">{character.name}</h4>
+      <h4>{character.name}</h4>
     </div>
   );
 }

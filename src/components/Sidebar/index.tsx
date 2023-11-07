@@ -36,9 +36,11 @@ export default function Sidebar(): JSX.Element {
 
   return (
     <div className={styles.page}>
-      <button className={styles.close} type="button" onClick={onClose}>
-        X
-      </button>
+      <div className={styles.wrapClose}>
+        <button className={styles.close} type="button" onClick={onClose}>
+          x
+        </button>
+      </div>
       {isLoading ? (
         <div>
           <h3>Loading...</h3>
