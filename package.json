@@ -10,7 +10,8 @@
     "lint:fix": "npm run lint -- --fix",
     "format:fix": "npx prettier . --write",
     "preview": "vite preview",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "test": "vitest"
   },
   "dependencies": {
     "eslint-plugin-import": "^2.29.0",
@@ -34,7 +35,8 @@
     "lint-staged": "^15.0.2",
     "prettier": "3.0.3",
     "typescript": "^5.0.2",
-    "vite": "^4.4.5"
+    "vite": "^4.4.5",
+    "vitest": "^0.34.6"
   },
   "lint-staged": {
     "**/*.{ts,tsx}": [
