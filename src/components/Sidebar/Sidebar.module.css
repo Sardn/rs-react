@@ -5,7 +5,7 @@
   background-color: green;
   border-radius: 1rem;
 }
-.wrapClose{
+.wrapClose {
   display: flex;
 }
 .close {

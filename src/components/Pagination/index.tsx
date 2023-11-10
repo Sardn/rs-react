@@ -110,12 +110,12 @@ export default function Pagination({
   }
 
   return (
-    <div className='pagination'>
+    <div className="pagination">
       <nav>
-        <ul className='pagination__links'>{getLinks()}</ul>
+        <ul className="pagination__links">{getLinks()}</ul>
       </nav>
       <select
-        className='pagination__select'
+        className="pagination__select"
         onChange={onChangePerPage}
         value={limit}
       >
