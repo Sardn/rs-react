@@ -16,7 +16,7 @@
     "noImplicitAny": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "types": ["vitest/globals", "@testing-library/jest-dom"],
+    "types": ["vitest/globals", "@testing-library/jest-dom"]
   },
   "include": ["src", "test/Hello.test.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
