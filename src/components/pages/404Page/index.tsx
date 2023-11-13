@@ -12,15 +12,17 @@ function ErrorPage() {
   const notFound = (): JSX.Element => {
     return (
       <div className={styles.page}>
-        <div>
-          <h1>
-            <span>🙁</span>
+        <div className="">
+          <h1 className="">
+            <span className="">🙁</span>
             <br />
             Nothing found
           </h1>
           <p className={styles.descr}>Unfortunately this page is missing...</p>
         </div>
-        <Link to="/">Go Home</Link>
+        <Link className="" to="/">
+          Go Home
+        </Link>
       </div>
     );
   };
@@ -28,9 +30,9 @@ function ErrorPage() {
   const someError = (): JSX.Element => {
     return (
       <div className={styles.page}>
-        <div>
-          <h1>
-            <span>🙁</span>
+        <div className="">
+          <h1 className="">
+            <span className="">🙁</span>
             <br />
             Nothing found
           </h1>
