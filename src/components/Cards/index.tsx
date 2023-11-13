@@ -1,70 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import CharacterCard from '../Card';
-import { Character, CharacterResponse } from '../../Types/api';
-import { api } from '../../API';
-import { useSearchParams } from 'react-router-dom';
-import { keyPrevQuery, defPage } from '../../Types/constants';
-import { getPageLimit } from '../../Utils';
-import Pagination from '../Pagination';
+import { useContext } from 'react';
+import { CharacterData } from '../../types/types';
+import Card from '../Card';
 import styles from './Cards.module.css';
+import NotFoundCard from '../NotFoundCard';
+import Pagination from '../Pagination';
+import Selector from '../Selector';
+import { MainPageContext } from '../pages/MainPage';
 
-export default function Cards(): JSX.Element {
-  const [searchParams] = useSearchParams();
-  const [charactersResponse, setCharactersResponse] =
-    useState<CharacterResponse | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [limit, setLimit] = useState<number>(defPage);
-  const [page, setPage] = useState<number>(1);
-  const [query, setQuery] = useState<string>(
-    localStorage.getItem(keyPrevQuery) ?? ''
-  );
+export const TEST_ID = 'characters-list';
 
-  useEffect(() => {
-    const limitParam = +(searchParams.get('limit') ?? defPage);
-    limit === limitParam || setLimit(limitParam);
-    const pageParam = +(searchParams.get('page') ?? 1);
-    page === pageParam || setPage(pageParam);
-    const queryParam = searchParams.get('query') ?? '';
-    query === queryParam || setQuery(queryParam);
-  }, [limit, page, query, searchParams]);
+function CharactersList() {
+  const { charactersData, goTo } = useContext(MainPageContext);
 
-  useEffect(() => {
-    async function update(): Promise<void> {
-      setIsLoading(true);
-      const response = await api.getCharacters({
-        name: query,
-        limit: getPageLimit(limit),
-        page: page,
-      });
-      setCharactersResponse(response);
-      setIsLoading(false);
-    }
+  const showData = (
+    data: CharacterData[] | null
+  ): JSX.Element | JSX.Element[] => {
+    if (data === null) return <></>;
+    if (!data.length) return <NotFoundCard />;
 
-    update();
-  }, [limit, page, query]);
+    return data.map((character: CharacterData) => (
+      <div
+        key={character.id}
+        onClick={() => goTo(`./details/${character.id}`)}
+        className={styles.link}
+      >
+        <Card {...character} />
+      </div>
+    ));
+  };
 
   return (
-    <div className={styles.list}>
-      {isLoading ? (
-        <div>
-          <h3>Loading...</h3>
-        </div>
-      ) : charactersResponse?.results ? (
-        <>
-          <Pagination
-            limit={limit}
-            count={charactersResponse.info.count}
-            currentPage={page}
-          />
-          <div className={styles.cards}>
-            {charactersResponse.results.map((char: Character) => (
-              <CharacterCard key={char.id} character={char} />
-            ))}
-          </div>
-        </>
-      ) : (
-        <h3>No Results</h3>
-      )}
-    </div>
+    <>
+      <div className={styles.controls}>
+        <Pagination />
+        <Selector />
+      </div>
+      <div className={styles.list} data-testid={TEST_ID}>
+        {showData(charactersData)}
+      </div>
+    </>
   );
 }
+
+export default CharactersList;

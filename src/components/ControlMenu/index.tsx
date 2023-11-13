@@ -1,36 +1,49 @@
-import React, { useState } from 'react';
-import { keyPrevQuery } from '../../Types/constants';
-import { useNavigate } from 'react-router-dom';
+import { ChangeEvent, FormEvent, useContext, useRef, useState } from 'react';
 import styles from './ControlMenu.module.css';
+import { MainPageContext } from '../pages/MainPage';
 
-export default function SearchBar(): JSX.Element {
-  const navigate = useNavigate();
-  const [query, setQuery] = useState<string>(
-    localStorage.getItem(keyPrevQuery) ?? ''
-  );
+export const TEST_ID = 'search-bar';
 
-  function onChangeInput(event: React.ChangeEvent<HTMLInputElement>) {
-    const value = event.target.value;
-    setQuery(value);
-  }
+function SearchBar() {
+  const { searchTerm, updateSearchTerm } = useContext(MainPageContext);
+  const inputElement = useRef<HTMLInputElement>(null);
+  const [inputValue, setInputValue] = useState(searchTerm);
 
-  function onSearchClick() {
-    const q = query.trim();
-    localStorage.setItem(keyPrevQuery, q);
-    navigate(`/?query=${q}`);
-  }
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    const current = inputElement.current;
+
+    if (current) {
+      const value = current.value.trim();
+      setInputValue(value);
+      updateSearchTerm(value);
+    }
+  };
+
+  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setInputValue(event.target.value);
+  };
+
   return (
-    <div className={styles.control}>
+    <form
+      className={styles.search}
+      onSubmit={handleSubmit}
+      data-testid={TEST_ID}
+    >
       <input
-        className={styles.search}
-        value={query}
-        onChange={(event) => onChangeInput(event)}
-        type="search"
+        type="text"
+        ref={inputElement}
+        value={inputValue}
         placeholder="Search..."
-      ></input>
-      <button type="button" onClick={() => onSearchClick()}>
-        Search
+        className={styles.input}
+        onChange={handleChange}
+      />
+      <button type="submit" title="Search" className={styles.button}>
+        press
       </button>
-    </div>
+    </form>
   );
 }
+
+export default SearchBar;

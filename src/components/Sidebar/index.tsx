@@ -1,61 +1,110 @@
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { api } from '../../API';
-import { useState, useEffect } from 'react';
-import { Character } from '../../Types/api';
+import DataLoader from '../../services/dataLoader/dataLoader';
+import { CharacterData } from '../../types/types';
+import Loader from '../Loader';
 import styles from './Sidebar.module.css';
 
-type Params = {
-  id?: string;
-};
+export const TEST_ID = 'character-details';
+export const CLOSE_BTN_TEST_ID = 'close-btn';
 
-export default function Sidebar(): JSX.Element {
-  const params = useParams<Params>();
-  const id = params.id;
-  const [character, setCharacter] = useState<Character | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+type Data = CharacterData | null;
+
+function CharacterDetails() {
+  const { characterID } = useParams();
+  const [characterData, setCharacterData] = useState<Data>(null);
+  const [loader, setLoader] = useState(false);
   const navigate = useNavigate();
+  const NOT_SPECIFIED = 'not specified';
 
   useEffect(() => {
-    const loadCharacter = async (charId: number) => {
-      setIsLoading(true);
-      const resp = await api.getCharacter(charId);
-      setCharacter(resp);
-      setIsLoading(false);
+    const dataLoader = new DataLoader();
+
+    const loadData = async (id: string) => {
+      try {
+        const data = await dataLoader.getCharacterData(id);
+
+        setTimeout(() => {
+          setCharacterData(data);
+          setLoader(false);
+        }, 250);
+      } catch (err) {
+        console.error(err);
+        setLoader(false);
+      }
     };
 
-    if (id) {
-      loadCharacter(+id);
-    }
-  }, [id, params]);
+    setLoader(true);
+    loadData(characterID || '');
+  }, [characterID]);
 
-  function onClose() {
-    const url = new URL(location.href);
-    url.pathname = '';
-    navigate(`${url.pathname}${url.search}`);
-  }
+  const closeDetails = () => {
+    navigate('..');
+  };
 
   return (
-    <div className={styles.page}>
-      <div className={styles.wrapClose}>
-        <button className={styles.close} type="button" onClick={onClose}>
-          x
-        </button>
-      </div>
-      {isLoading ? (
-        <div>
-          <h3>Loading...</h3>
+    <>
+      {loader ? <Loader /> : null}
+      {characterData !== null ? (
+        <div className={styles.container} data-testid={TEST_ID}>
+          <div className={styles.overlay} onClick={closeDetails}></div>
+          <div className={styles.details}>
+            <button onClick={closeDetails} data-testid={CLOSE_BTN_TEST_ID}>
+              X
+            </button>
+            <div className={styles.carddetails}>
+              {characterData ? (
+                <>
+                  <h3>{characterData.name}</h3>
+                  <div className={styles.img}>
+                    <img src={characterData.image} />
+                  </div>
+                  <div>
+                    <table>
+                      <tbody>
+                        <tr>
+                          <td>Status:</td>
+                          <td>{characterData.status || NOT_SPECIFIED}</td>
+                        </tr>
+                        <tr>
+                          <td>Species:</td>
+                          <td>{characterData.species || NOT_SPECIFIED}</td>
+                        </tr>
+                        <tr>
+                          <td>Type:</td>
+                          <td>{characterData.type || NOT_SPECIFIED}</td>
+                        </tr>
+                        <tr>
+                          <td>Gender:</td>
+                          <td>{characterData.gender || NOT_SPECIFIED}</td>
+                        </tr>
+                        <tr>
+                          <td>Origin:</td>
+                          <td>{characterData.origin.name || NOT_SPECIFIED}</td>
+                        </tr>
+                        <tr>
+                          <td>Location:</td>
+                          <td>
+                            {characterData.location.name || NOT_SPECIFIED}
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="character-description">
+                    The character is not found...
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
         </div>
-      ) : character && character.name ? (
-        <>
-          <h3>{character.name}</h3>
-          <img src={character.image}></img>
-          <p>Status: {character.status}</p>
-          <p>Gender: {character.gender}</p>
-          <p>Species: {character.species}</p>
-        </>
-      ) : (
-        <h3>No Character</h3>
-      )}
-    </div>
+      ) : null}
+    </>
   );
 }
+
+export default CharacterDetails;
