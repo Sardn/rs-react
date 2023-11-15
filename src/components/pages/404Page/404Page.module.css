@@ -1,0 +1,9 @@
+.page {
+  padding: 100px;
+  text-align: center;
+  max-width: 750px;
+  margin: auto;
+}
+.page span {
+  font-size: 8rem;
+}
