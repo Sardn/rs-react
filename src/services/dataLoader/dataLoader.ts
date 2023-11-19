@@ -1,5 +1,5 @@
 import { CharacterData, Response } from '../../types/types';
-import { API_ITEMS_PER_PAGE, API_URL, httpStatus } from './settings';
+import { API_ITEMS_PER_PAGE, API_URL, httpStatus } from './settingsAPI';
 
 class DataLoader {
   async getData(

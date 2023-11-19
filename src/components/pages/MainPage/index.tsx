@@ -4,7 +4,7 @@ import SearchBar from '../../ControlMenu';
 import Logo from '../../Logo';
 import ErrorBoundary from '../../ErrorBoundary';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { API_ITEMS_PER_PAGE } from '../../../services/dataLoader/settings';
+import { API_ITEMS_PER_PAGE } from '../../../services/dataLoader/settingsAPI';
 import DataLoader from '../../../services/dataLoader/dataLoader';
 import Loader from '../../Loader';
 import { CharacterData } from '../../../types/types';

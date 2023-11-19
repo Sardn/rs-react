@@ -1,5 +1,5 @@
 import { ChangeEvent, useContext } from 'react';
-import { API_ITEMS_PER_PAGE } from '../../services/dataLoader/settings';
+import { API_ITEMS_PER_PAGE } from '../../services/dataLoader/settingsAPI';
 import { MainPageContext } from '../pages/MainPage';
 
 interface Props {
