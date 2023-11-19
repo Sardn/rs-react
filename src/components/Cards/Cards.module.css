@@ -1,0 +1,26 @@
+.list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  justify-content: center;
+  margin: 15px auto;
+}
+
+.link {
+  color: inherit;
+  text-decoration: inherit;
+}
+
+.controls {
+  width: 29%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.no-character {
+  font-size: 3em;
+  font-weight: 600;
+  color: black;
+  text-shadow: 0px 0px 5px gainsboro;
+}
