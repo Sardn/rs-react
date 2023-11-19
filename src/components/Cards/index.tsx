@@ -5,7 +5,7 @@ import styles from './Cards.module.css';
 import NotFoundCard from '../NotFoundCard';
 import Pagination from '../Pagination';
 import Selector from '../Selector';
-import { MainPageContext } from '../pages/MainPage';
+import { MainPageContext } from '../../pages/MainPage';
 
 export const TEST_ID = 'characters-list';
 

@@ -4,9 +4,9 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from 'react-router-dom';
-import MainPage from '../pages/MainPage';
+import MainPage from '../../pages/MainPage';
 import './App.css';
-import ErrorPage from '../pages/404Page';
+import ErrorPage from '../../pages/404Page';
 import CharacterDetails from '../Sidebar';
 
 export const routesConfig: RouteObject[] = [

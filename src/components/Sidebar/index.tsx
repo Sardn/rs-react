@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import DataLoader from '../../services/dataLoader/dataLoader';
 import { CharacterData } from '../../types/types';
-import Loader from '../Loader';
+// import Loader from '../../Loader';
 import styles from './Sidebar.module.css';
 
 export const TEST_ID = 'character-details';
@@ -13,7 +13,7 @@ type Data = CharacterData | null;
 function CharacterDetails() {
   const { characterID } = useParams();
   const [characterData, setCharacterData] = useState<Data>(null);
-  const [loader, setLoader] = useState(false);
+  const [, setLoader] = useState(false);
   const navigate = useNavigate();
   const NOT_SPECIFIED = 'not specified';
 
@@ -44,7 +44,7 @@ function CharacterDetails() {
 
   return (
     <>
-      {loader ? <Loader /> : null}
+      {/* {loader ? <Loader /> : null} */}
       {characterData !== null ? (
         <div className={styles.container} data-testid={TEST_ID}>
           <div className={styles.overlay} onClick={closeDetails}></div>

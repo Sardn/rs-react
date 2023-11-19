@@ -1,13 +1,13 @@
 import { createContext, useEffect, useState } from 'react';
-import CharactersList from '../../Cards';
-import SearchBar from '../../ControlMenu';
-import Logo from '../../Logo';
-import ErrorBoundary from '../../ErrorBoundary';
+import CharactersList from '../../components/Cards';
+import SearchBar from '../../components/ControlMenu';
+import Logo from '../../components/Logo';
+import ErrorBoundary from '../../components/ErrorBoundary';
 import { Outlet, useNavigate, useParams } from 'react-router-dom';
-import { API_ITEMS_PER_PAGE } from '../../../services/dataLoader/settingsAPI';
-import DataLoader from '../../../services/dataLoader/dataLoader';
-import Loader from '../../Loader';
-import { CharacterData } from '../../../types/types';
+import { API_ITEMS_PER_PAGE } from '../../services/dataLoader/settingsAPI';
+import DataLoader from '../../services/dataLoader/dataLoader';
+
+import { CharacterData } from '../../types/types';
 
 interface Context {
   searchTerm: string;
@@ -43,7 +43,7 @@ function MainPage() {
   const [charactersData, setCharactersData] = useState<CharacterData[] | null>(
     null
   );
-  const [loader, setLoader] = useState(false);
+  const [, setLoader] = useState(false);
   const [pagesCount, setPagesCount] = useState(0);
   const { pageID } = useParams();
   const navigate = useNavigate();
@@ -107,7 +107,7 @@ function MainPage() {
 
   return (
     <ErrorBoundary>
-      {loader ? <Loader /> : null}
+      {/* {loader ? <Loader /> : null} */}
       <MainPageContext.Provider value={context}>
         <Logo />
         <SearchBar />

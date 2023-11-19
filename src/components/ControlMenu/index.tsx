@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useContext, useRef, useState } from 'react';
 import styles from './ControlMenu.module.css';
-import { MainPageContext } from '../pages/MainPage';
+import { MainPageContext } from '../../pages/MainPage';
 
 export const TEST_ID = 'search-bar';
 

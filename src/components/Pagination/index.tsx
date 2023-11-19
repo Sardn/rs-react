@@ -1,6 +1,6 @@
 import './Pagination.css';
 import { useContext } from 'react';
-import { MainPageContext } from '../pages/MainPage';
+import { MainPageContext } from '../../pages/MainPage';
 
 export const TEST_ID = 'pager';
 
