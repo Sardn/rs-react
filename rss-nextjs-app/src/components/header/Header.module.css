@@ -1,0 +1,10 @@
+.header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.img {
+  margin: auto;
+  width: 98vw;
+  height: 5rem;
+}
